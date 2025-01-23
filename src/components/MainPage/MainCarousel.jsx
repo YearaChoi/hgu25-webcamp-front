@@ -10,13 +10,13 @@ function MainCarousel() {
     <Wrapper>
       <Carousel data-bs-theme="dark">
         <Carousel.Item>
-          <img src={carouseImg1} alt="logoImg" />
+          <Img src={carouseImg1} alt="logoImg" />
         </Carousel.Item>
         <Carousel.Item>
-          <img src={carouseImg2} alt="logoImg" />
+          <Img src={carouseImg2} alt="logoImg" />
         </Carousel.Item>
         <Carousel.Item>
-          <img src={carouseImg3} alt="logoImg" />
+          <Img src={carouseImg3} alt="logoImg" />
         </Carousel.Item>
       </Carousel>
     </Wrapper>
@@ -27,4 +27,10 @@ export default MainCarousel;
 
 const Wrapper = styled.div`
   /* border: 2px solid red; */
+`;
+
+const Img = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;

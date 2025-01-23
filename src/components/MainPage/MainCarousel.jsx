@@ -5,7 +5,7 @@ import carouseImg3 from "../../assets/icons/carouseImg3.jpg";
 import styled from "styled-components";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function HeaderCarousel() {
+function MainCarousel() {
   return (
     <Wrapper>
       <Carousel data-bs-theme="dark">
@@ -23,7 +23,7 @@ function HeaderCarousel() {
   );
 }
 
-export default HeaderCarousel;
+export default MainCarousel;
 
 const Wrapper = styled.div`
   /* border: 2px solid red; */

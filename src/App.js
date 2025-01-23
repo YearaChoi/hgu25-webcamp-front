@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
 import MainPage from "./pages/MainPage";
 import PostDetailPage from "./pages/PostDetailPage";
 import PostListPage from "./pages/PostListPage";

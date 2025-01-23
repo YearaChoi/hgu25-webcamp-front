@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import logoImg from "../assets/icons/logoImg.png";
-import HeaderCarousel from "./MainPage/HeaderCarousel";
 
 function Header() {
   const menus = [
@@ -61,7 +60,6 @@ function Header() {
           </Popular>
         </div>
       </Wrapper>
-      <HeaderCarousel />
     </div>
   );
 }

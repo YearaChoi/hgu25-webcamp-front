@@ -4,6 +4,40 @@ import logoImg from "../assets/icons/logoImg.png";
 import HeaderCarousel from "./MainPage/HeaderCarousel";
 
 function Header() {
+  const menus = [
+    "중고거래",
+    "부동산",
+    "중고차",
+    "알바",
+    "동네업체",
+    "동네생활",
+    "모임",
+  ];
+  const popularKeywords = [
+    "인기 검색어",
+    "굿즈",
+    "플스",
+    "닌텐도",
+    "다이슨",
+    "캠핑",
+    "포토카드",
+    "에어팟",
+    "스타벅스",
+    "달력",
+    "삼성",
+    "다이소",
+    "가습기",
+    "기프티콘",
+    "상품권",
+    "기프트카드",
+    "노트북",
+    "레고",
+    "한복",
+    "손흥민",
+    "의자",
+    "아이폰",
+  ];
+
   return (
     <div>
       <Wrapper>
@@ -13,40 +47,17 @@ function Header() {
               <img src={logoImg} alt="logoImg" />
             </LogoImg>
             <Menus>
-              <Menu>중고거래</Menu>
-              <Menu>부동산</Menu>
-              <Menu>중고차</Menu>
-              <Menu>알바</Menu>
-              <Menu>동네업체</Menu>
-              <Menu>동네생활</Menu>
-              <Menu>모임</Menu>
+              {menus.map((menu, index) => (
+                <Menu key={index}>{menu}</Menu>
+              ))}
             </Menus>
             <AppDownBtn>앱 다운로드</AppDownBtn>
           </Container>
           <Search></Search>
           <Popular>
-            <Category>인기 검색어</Category>
-            <Category>굿즈</Category>
-            <Category>플스</Category>
-            <Category>닌텐도</Category>
-            <Category>다이슨</Category>
-            <Category>캠핑</Category>
-            <Category>포토카드</Category>
-            <Category>에어팟</Category>
-            <Category>스타벅스</Category>
-            <Category>달력</Category>
-            <Category>삼성</Category>
-            <Category>다이소</Category>
-            <Category>가습기</Category>
-            <Category>기프티콘</Category>
-            <Category>상품권</Category>
-            <Category>기프트카드</Category>
-            <Category>노트북</Category>
-            <Category>레고</Category>
-            <Category>한복</Category>
-            <Category>손흥민</Category>
-            <Category>의자</Category>
-            <Category>아이폰</Category>
+            {popularKeywords.map((category, index) => (
+              <Category key={index}>{category}</Category>
+            ))}
           </Popular>
         </div>
       </Wrapper>

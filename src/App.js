@@ -1,8 +1,17 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import MainPage from "./pages/MainPage";
+import PostDetailPage from "./pages/PostDetailPage";
+import PostListPage from "./pages/PostListPage";
+
 function App() {
   return (
-    <div>
-      <h1>hello</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainPage />}></Route>
+        <Route path="/post/category/:category" element={<PostListPage />} />
+        <Route path="/post/:postId" element={<PostDetailPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

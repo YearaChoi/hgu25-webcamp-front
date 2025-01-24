@@ -24,12 +24,12 @@ function CategoryCarousel() {
         <Title>인기 카테고리</Title>
         <CategoryContainer>
           {popularCategory.map((category, index) => (
-            <div key={index}>
+            <CategoryWrapper key={index}>
               <Category>
                 <img src={category.img} alt={category.name} />
               </Category>
               <Text>{category.name}</Text>
-            </div>
+            </CategoryWrapper>
           ))}
         </CategoryContainer>
       </Container>
@@ -78,8 +78,10 @@ const Category = styled.div`
   &:img {
     height: 30px;
   }
+`;
 
-  img:hover {
+const CategoryWrapper = styled.div`
+  &:hover ${Category} img {
     transform: scale(1.2, 1.2);
     transition-duration: 0.5s;
   }

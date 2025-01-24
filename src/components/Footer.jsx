@@ -185,6 +185,11 @@ const Title = styled.div`
 
 const Text = styled.div`
   padding: 2px;
+  cursor: pointer;
+
+  &:hover {
+    color: gray;
+  }
 `;
 
 const FooterBottom = styled.div`

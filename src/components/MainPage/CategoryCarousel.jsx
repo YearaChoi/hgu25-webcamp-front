@@ -1,10 +1,38 @@
 import React from "react";
 import styled from "styled-components";
+import categoryImg1 from "../../assets/icons/categoryImg1.png";
+import categoryImg2 from "../../assets/icons/categoryImg2.png";
+import categoryImg3 from "../../assets/icons/categoryImg3.png";
+import categoryImg4 from "../../assets/icons/categoryImg4.png";
+import categoryImg5 from "../../assets/icons/categoryImg5.png";
+import categoryImg6 from "../../assets/icons/categoryImg6.png";
 
 function CategoryCarousel() {
+  const popularCategory = [
+    { name: "디지털기기", img: categoryImg1 },
+    { name: "생활가전", img: categoryImg2 },
+    { name: "가구/인테리어", img: categoryImg3 },
+    { name: "생활/주방", img: categoryImg4 },
+    { name: "유아동", img: categoryImg5 },
+    { name: "유아도서", img: categoryImg6 },
+    { name: "여성의류", img: categoryImg1 },
+  ];
+
   return (
     <Wrapper>
-      <Container></Container>
+      <Container maxWidth="md">
+        <Title>인기 카테고리</Title>
+        <CategoryContainer>
+          {popularCategory.map((category, index) => (
+            <div key={index}>
+              <Category>
+                <img src={category.img} alt={category.name} />
+              </Category>
+              <Text>{category.name}</Text>
+            </div>
+          ))}
+        </CategoryContainer>
+      </Container>
     </Wrapper>
   );
 }
@@ -18,7 +46,49 @@ const Wrapper = styled.div`
 `;
 
 const Container = styled.div`
-  border: 2px solid red;
-  width: 80vw;
-  height: 400px;
+  /* border: 2px solid red; */
+  width: 1300px;
+  height: 370px;
+`;
+
+const Title = styled.div`
+  font-size: 24px;
+  font-weight: bold;
+  padding-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+`;
+
+const CategoryContainer = styled.div`
+  /* border: 2px solid green; */
+  display: flex;
+  justify-content: space-evenly;
+`;
+
+const Category = styled.div`
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  height: 170px;
+  width: 170px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:img {
+    height: 30px;
+  }
+
+  img:hover {
+    transform: scale(1.2, 1.2);
+    transition-duration: 0.5s;
+  }
+`;
+
+const Text = styled.div`
+  font-size: 16px;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 10px;
+  cursor: pointer;
 `;

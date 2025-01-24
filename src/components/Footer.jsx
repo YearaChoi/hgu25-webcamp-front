@@ -20,7 +20,7 @@ const Wrapper = styled.div`
 
 const AdImg = styled.div`
   width: 100%;
-  height: 360px;
+  height: 300px;
   overflow: hidden;
 
   img {

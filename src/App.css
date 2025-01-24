@@ -1,4 +1,9 @@
 body {
-  width: 1440px !important;
+  /* width: 1440px !important;
+  margin: auto; */
+}
+
+#root {
+  width: 1440px;
   margin: auto;
 }

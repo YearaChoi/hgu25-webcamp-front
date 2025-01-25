@@ -126,6 +126,8 @@ function HeaderDetail() {
 export default HeaderDetail;
 
 const Wrapper = styled.div`
+  width: 1260px;
+  margin: auto;
   /* border: 2px solid blue; */
 `;
 const SearchWrapper = styled.div`

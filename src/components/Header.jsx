@@ -12,7 +12,7 @@ function Header() {
   };
 
   const handleMenuClick = () => {
-    navigate("/post");
+    navigate("/post/category");
   };
 
   return (
@@ -28,12 +28,12 @@ function Header() {
               <Menu>부동산</Menu>
               <Menu>중고차</Menu>
               <Menu>알바</Menu>
+              <Menu>동네업체</Menu>
               <Menu>동네생활</Menu>
               <Menu>모임</Menu>
             </Menus>
             <AppDownBtn>앱 다운로드</AppDownBtn>
           </Container>
-          <HeaderDetail />
         </div>
       </Wrapper>
     </div>

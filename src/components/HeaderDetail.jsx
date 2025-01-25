@@ -64,8 +64,12 @@ function HeaderDetail() {
     <Wrapper>
       <SearchWrapper>
         <Location>
-          <SvgIcon component={LocationOnIcon} inheritViewBox />
-          포항시 북구
+          <SvgIcon
+            component={LocationOnIcon}
+            inheritViewBox
+            style={{ fontSize: "18px", marginRight: "4px" }}
+          />
+          <div>포항시 북구</div>
           <SvgIcon component={KeyboardArrowDownIcon} inheritViewBox />
         </Location>
         <Search style={{ position: "relative" }}>
@@ -139,6 +143,8 @@ const SearchWrapper = styled.div`
 `;
 
 const Location = styled.div`
+  display: flex;
+  align-items: center;
   background-color: #ececec;
   padding: 10px 15px 10px 15px;
   border-radius: 30px;
@@ -153,7 +159,7 @@ const Search = styled.div`
   border: 1px solid #e9e9e9;
   border-radius: 5px;
   width: 84%;
-  margin-left: 30px;
+  margin-left: 26px;
   /* cursor: pointer; */
   display: flex;
   align-items: center;

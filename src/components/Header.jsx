@@ -5,20 +5,14 @@ import { useNavigate } from "react-router-dom";
 import HeaderDetail from "./HeaderDetail";
 
 function Header() {
-  const menus = [
-    "중고거래",
-    "부동산",
-    "중고차",
-    "알바",
-    "동네업체",
-    "동네생활",
-    "모임",
-  ];
-
   const navigate = useNavigate();
 
   const handleLogoClick = () => {
     navigate("/");
+  };
+
+  const handleMenuClick = () => {
+    navigate("/post");
   };
 
   return (
@@ -30,9 +24,12 @@ function Header() {
               <img src={logoImg} alt="logoImg" />
             </LogoImg>
             <Menus>
-              {menus.map((menu, index) => (
-                <Menu key={index}>{menu}</Menu>
-              ))}
+              <Menu onClick={handleMenuClick}>중고거래</Menu>
+              <Menu>부동산</Menu>
+              <Menu>중고차</Menu>
+              <Menu>알바</Menu>
+              <Menu>동네생활</Menu>
+              <Menu>모임</Menu>
             </Menus>
             <AppDownBtn>앱 다운로드</AppDownBtn>
           </Container>
@@ -84,10 +81,10 @@ const Menu = styled.div`
 `;
 
 const AppDownBtn = styled.div`
-  background-color: #fcf0df;
+  background-color: #fce9df;
   padding: 5px 10px 5px 10px;
   border-radius: 5px;
-  color: #c5643d;
+  color: #e65f17;
   cursor: pointer;
   font-weight: bold;
   font-size: 15px;

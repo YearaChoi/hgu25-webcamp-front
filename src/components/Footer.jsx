@@ -193,19 +193,19 @@ const Text = styled.div`
 `;
 
 const FooterBottom = styled.div`
-  padding-top: 30px;
-  padding-left: 60px;
+  padding-top: 40px;
+  padding-left: 80px;
   height: 270px;
   border-top: 1px solid #e4e4e4;
   color: gray;
 `;
 
 const Info = styled.div`
-  font-size: 15px;
+  font-size: 14px;
 `;
 
 const InfoBold = styled.span`
-  font-size: 15px;
+  font-size: 14px;
   font-weight: bold;
 `;
 

@@ -129,13 +129,19 @@ function PostList() {
     navigate(`/post/${postId}`);
   };
 
+  const handleCreatePostBtnClick = () => {
+    navigate("/post/create");
+  };
+
   return (
     <Wrapper>
       <Top>
         홈 중고거래
         <TopInfo>
           <MainText>경상북도 포항시 북구 중고거래</MainText>
-          <CreatPostBtn>게시물 추가하기</CreatPostBtn>
+          <CreatPostBtn onClick={handleCreatePostBtnClick}>
+            게시물 추가하기
+          </CreatPostBtn>
         </TopInfo>
       </Top>
       <MainContainer>

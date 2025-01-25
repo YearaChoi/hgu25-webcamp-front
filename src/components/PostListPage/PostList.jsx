@@ -126,7 +126,10 @@ function PostList() {
     <Wrapper>
       <Top>
         홈 중고거래
-        <MainText>경상북도 포항시 북구 중고거래</MainText>
+        <TopInfo>
+          <MainText>경상북도 포항시 북구 중고거래</MainText>
+          <CreatPostBtn>게시글 추가하기</CreatPostBtn>
+        </TopInfo>
       </Top>
       <MainContainer>
         <PostFilter>
@@ -189,6 +192,29 @@ const Top = styled.div`
   /* border: 2px solid green; */
 `;
 
+const TopInfo = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const CreatPostBtn = styled.div`
+  background-color: #f65f0f;
+  margin-right: 20px;
+  padding: 8px 15px 8px 15px;
+  border-radius: 15px;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+  transition-duration: 0.5s;
+
+  &:hover {
+    background-color: #ff7931;
+    transition-duration: 0.5s;
+  }
+`;
+
 const MainText = styled.div`
   font-size: 28px;
   font-weight: bold;
@@ -202,7 +228,7 @@ const MainContainer = styled.div`
 
 const PostFilter = styled.div`
   /* border: 2px solid orange; */
-  width: 420px;
+  width: 450px;
 `;
 
 const FilterTop = styled.div`
@@ -233,6 +259,7 @@ const PostListContainer = styled.div`
   /* border: 2px solid aqua; */
   margin-left: 20px;
   margin-bottom: 80px;
+  padding: 10px;
   display: flex;
   flex-flow: wrap;
   justify-content: space-between;

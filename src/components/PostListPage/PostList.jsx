@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 function PostList() {
@@ -118,8 +119,14 @@ function PostList() {
     },
   ];
 
+  const navigate = useNavigate();
+
   const handlePageReload = () => {
     window.location.reload();
+  };
+
+  const handlePostClick = (postId) => {
+    navigate(`/post/${postId}`);
   };
 
   return (
@@ -128,7 +135,7 @@ function PostList() {
         홈 중고거래
         <TopInfo>
           <MainText>경상북도 포항시 북구 중고거래</MainText>
-          <CreatPostBtn>게시글 추가하기</CreatPostBtn>
+          <CreatPostBtn>게시물 추가하기</CreatPostBtn>
         </TopInfo>
       </Top>
       <MainContainer>
@@ -167,7 +174,10 @@ function PostList() {
         </PostFilter>
         <PostListContainer>
           {postDummyData.map((post) => (
-            <PostContainer key={post.id}>
+            <PostContainer
+              key={post.id}
+              onClick={() => handlePostClick(post.id)}
+            >
               <PostImg>
                 <img src={post.imageUrl} alt="이미지" />
               </PostImg>
@@ -275,13 +285,14 @@ const PostImg = styled.div`
   img {
     width: 100%;
     height: 100%;
-    cursor: pointer;
+    /* cursor: pointer; */
   }
 `;
 
 const PostContainer = styled.div`
   width: 230px;
   padding-bottom: 40px;
+  cursor: pointer;
   /* border: 2px solid green; */
 
   &:hover ${PostImg} img {

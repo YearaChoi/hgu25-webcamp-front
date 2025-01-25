@@ -9,8 +9,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainPage />}></Route>
-        <Route path="/post/:category?" element={<PostListPage />} />
         <Route path="/post/:postId" element={<PostDetailPage />} />
+        <Route path="/post/category/:category?" element={<PostListPage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import logoImg from "../assets/icons/logoImg.png";
 import { useNavigate } from "react-router-dom";
-import HeaderDetail from "./HeaderDetail";
 
 function Header() {
   const navigate = useNavigate();
@@ -13,6 +12,7 @@ function Header() {
 
   const handleMenuClick = () => {
     navigate("/post/category");
+    window.location.reload();
   };
 
   return (

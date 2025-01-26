@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import getAllPost from "../../apis/getAllPost";
+import getCategoryPostList from "../../apis/getCategoryPostList";
 
 const categories = [
   { id: 1, name: "디지털기기" },
@@ -42,17 +43,20 @@ function PostList() {
 
   useEffect(() => {
     const fetchPostList = async () => {
-      const fetchedPostList = await getAllPost();
+      let fetchedPostList;
+      if (categoryId) {
+        fetchedPostList = await getCategoryPostList(categoryId); // 카테고리별 게시물 불러오기
+      } else {
+        fetchedPostList = await getAllPost(); // 전체 게시물 불러오기
+      }
+
       const sortedPosts = fetchedPostList.sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       );
       setPosts(sortedPosts);
     };
     fetchPostList();
-  }, []);
-
-  // console.log(posts);
-  // console.log(`${process.env.REACT_APP_HOST_URL}/getAll`);
+  }, [categoryId]);
 
   const handlePageReload = () => {
     navigate("/post/category");

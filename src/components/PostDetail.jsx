@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import getPost from "../apis/getPost";
 import deletePost from "../apis/deletePost";
+import updatePost from "../apis/updatePost";
 
 const categories = [
   { id: 1, name: "디지털기기" },
@@ -29,6 +30,7 @@ const categories = [
 
 function PostDetil() {
   const [post, setPost] = useState("");
+  const { postId } = useParams();
   const [formData, setFormData] = useState({
     title: "",
     category: "",
@@ -38,7 +40,6 @@ function PostDetil() {
 
   const [imageFile, setImageFile] = useState("");
   const navigate = useNavigate();
-  const { postId } = useParams();
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
@@ -84,16 +85,22 @@ function PostDetil() {
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const objectUrl = URL.createObjectURL(file); // 파일을 URL로 변환
-      setImageFile(objectUrl);
+      setImageFile(file); // 실제 파일 객체를 저장
     }
   };
 
   console.log("formdata: ", formData);
   console.log("file: ", imageFile);
 
-  const handleSaveBtnClick = () => {
+  const handleSaveBtnClick = async () => {
     setIsEditing(false);
+
+    try {
+      await updatePost(postId, formData, imageFile);
+      console.log("게시물이 성공적으로 업데이트되었습니다!");
+    } catch (error) {
+      console.log("게시물 업데이트에 실패했습니다.");
+    }
   };
 
   const handleDeleteBtnClick = async () => {

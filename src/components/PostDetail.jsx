@@ -60,9 +60,11 @@ function PostDetil() {
         price: post.price,
         description: post.description,
       });
-      setImageFile(post.imageName);
+      setImageFile(post.imageUrl);
     }
   }, [post]);
+
+  console.log("imgaeUrl :", post.imageUrl);
 
   const handleEditBtnClick = () => {
     setIsEditing(true);

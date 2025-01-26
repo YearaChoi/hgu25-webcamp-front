@@ -140,7 +140,7 @@ function PostList() {
               onClick={() => handlePostClick(post.id)}
             >
               <PostImg>
-                <img src={post.imageName} alt="이미지" />
+                <img src={post.imageUrl} alt={post.title} />
               </PostImg>
               <PostTitle>{post.title}</PostTitle>
               <PostPrice>{post.price}원</PostPrice>

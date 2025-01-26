@@ -194,7 +194,7 @@ const MainContainer = styled.div`
 `;
 
 const PostFilter = styled.div`
-  border: 2px solid orange;
+  /* border: 2px solid orange; */
   width: 250px;
 `;
 
@@ -223,14 +223,13 @@ const Lable = styled.label`
 `;
 
 const PostListContainer = styled.div`
-  border: 2px solid aqua;
-  width: 960px;
-  margin-left: 20px;
+  /* border: 2px solid aqua; */
+  width: 1000px;
   margin-bottom: 80px;
-  padding: 10px;
+  padding-left: 20px;
   display: flex;
   flex-flow: wrap;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 `;
 
 const PostImg = styled.div`
@@ -251,7 +250,9 @@ const PostContainer = styled.div`
   width: 230px;
   padding-bottom: 40px;
   cursor: pointer;
-  /* border: 2px solid green; */
+  border: 2px solid green;
+  margin-right: 14px;
+  margin-bottom: 10px;
 
   &:hover ${PostImg} img {
     transform: scale(1.2, 1.2);

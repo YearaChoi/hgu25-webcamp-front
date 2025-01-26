@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import getPost from "../apis/getPost";
+import deletePost from "../apis/deletePost";
 
 const categories = [
   { id: 1, name: "디지털기기" },
@@ -95,9 +96,15 @@ function PostDetil() {
     setIsEditing(false);
   };
 
-  const handleDeleteBtnClick = () => {
+  const handleDeleteBtnClick = async () => {
     if (window.confirm("삭제하시겠습니까?")) {
-      navigate("/post/category");
+      try {
+        const id = postId;
+        await deletePost(id);
+        navigate("/post/category");
+      } catch (error) {
+        console.error("Failed to delete post:", error);
+      }
     }
   };
 

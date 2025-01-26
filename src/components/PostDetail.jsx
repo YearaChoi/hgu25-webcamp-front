@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
+import getPost from "../apis/getPost";
 
 const categories = [
   { id: 1, name: "디지털기기" },
@@ -25,103 +26,10 @@ const categories = [
   { id: 20, name: "삽니다" },
 ];
 
-const postDummyData = [
-  {
-    id: 1,
-    title: "중고 노트북 판매",
-    category: 1,
-    description: "사용감 적은 맥북 프로 판매합니다. 2020년 모델.",
-    price: "20000",
-    createdAt: "2025-01-20 14:30",
-    imageUrl:
-      "https://cdn.pixabay.com/photo/2025/01/14/13/55/nature-9332892_1280.jpg",
-  },
-  {
-    id: 2,
-    title: "냉장고 싸게 팝니다",
-    category: 2,
-    description: "2년 사용한 삼성 냉장고. 성능 문제없음.",
-    price: "20000",
-    createdAt: "2025-01-21 10:15",
-    imageUrl:
-      "https://cdn.pixabay.com/photo/2025/01/14/13/55/nature-9332892_1280.jpg",
-  },
-  {
-    id: 3,
-    title: "원목 식탁 세트",
-    category: 3,
-    description: "6인용 원목 식탁과 의자 세트입니다. 깨끗하게 사용했어요.",
-    price: "20000",
-    createdAt: "2025-01-19 09:45",
-    imageUrl:
-      "https://cdn.pixabay.com/photo/2025/01/14/13/55/nature-9332892_1280.jpg",
-  },
-  {
-    id: 4,
-    title: "주방용품 일괄 판매",
-    category: 4,
-    description: "후라이팬, 냄비, 접시 등 다양한 주방용품 팝니다.",
-    price: "20000",
-    createdAt: "2025-01-22 11:30",
-    imageUrl:
-      "https://cdn.pixabay.com/photo/2025/01/14/13/55/nature-9332892_1280.jpg",
-  },
-  {
-    id: 5,
-    title: "유아용 장난감 판매",
-    category: 5,
-    description: "아기가 사용하던 장난감입니다. 상태 양호.",
-    price: "20000",
-    createdAt: "2025-01-18 16:00",
-    imageUrl:
-      "https://cdn.pixabay.com/photo/2025/01/14/13/55/nature-9332892_1280.jpg",
-  },
-  {
-    id: 6,
-    title: "여성 겨울 코트",
-    category: 7,
-    description: "새 옷이나 다름없는 여성 겨울 코트입니다.",
-    price: "20000",
-    createdAt: "2025-01-20 13:00",
-    imageUrl:
-      "https://cdn.pixabay.com/photo/2025/01/14/13/55/nature-9332892_1280.jpg",
-  },
-  {
-    id: 7,
-    title: "스포츠 용품 세트",
-    category: 11,
-    description: "야구 배트와 글러브, 운동화 일괄 판매합니다.",
-    price: "20000",
-    createdAt: "2025-01-17 15:20",
-    imageUrl:
-      "https://cdn.pixabay.com/photo/2025/01/14/13/55/nature-9332892_1280.jpg",
-  },
-  {
-    id: 8,
-    title: "공연 티켓 판매",
-    category: 14,
-    description: "2월 10일 공연 티켓 2장 팝니다. 선착순.",
-    price: "20000",
-    createdAt: "2025-01-23 08:40",
-    imageUrl:
-      "https://cdn.pixabay.com/photo/2025/01/14/13/55/nature-9332892_1280.jpg",
-  },
-  {
-    id: 9,
-    title: "공연 티켓 판매",
-    category: 14,
-    description: "2월 10일 공연 티켓 2장 팝니다. 선착순.",
-    price: "20000",
-    createdAt: "2025-01-23 08:40",
-    imageUrl:
-      "https://cdn.pixabay.com/photo/2025/01/14/13/55/nature-9332892_1280.jpg",
-  },
-];
-
 function PostDetil() {
+  const [post, setPost] = useState("");
   const navigate = useNavigate();
   const { postId } = useParams();
-  const post = postDummyData.find((p) => p.id === Number(postId));
 
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
@@ -131,6 +39,17 @@ function PostDetil() {
     description: post.description,
   });
   const [imageFile, setImageFile] = useState(post.imageUrl);
+
+  useEffect(() => {
+    const fetchPost = async () => {
+      const id = postId;
+      const fetchedPost = await getPost(id);
+      setPost(fetchedPost);
+    };
+    fetchPost();
+  }, [postId]);
+
+  console.log(post);
 
   if (!post) return <div>존재하지 않는 게시물입니다.</div>;
 
@@ -223,7 +142,13 @@ function PostDetil() {
               </Select>
             ) : (
               <>
-                <GrayText>가구/인테리어</GrayText>
+                <GrayText>
+                  {
+                    categories.find(
+                      (category) => category.id === parseInt(post.category)
+                    )?.name
+                  }
+                </GrayText>
                 <GrayText>38분 전</GrayText>
               </>
             )}

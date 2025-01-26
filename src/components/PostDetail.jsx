@@ -105,6 +105,7 @@ function PostDetil() {
     try {
       await updatePost(postId, formData, imageFile);
       console.log("게시물이 성공적으로 업데이트되었습니다!");
+      navigate("/post/category");
     } catch (error) {
       console.log("게시물 업데이트에 실패했습니다.");
     }

@@ -197,7 +197,7 @@ function PostDetil() {
             {isEditing ? (
               <div style={{ display: "flex" }}>
                 <Input
-                  type="number"
+                  // type="number"
                   placeholder="가격을 입력하세요"
                   name="price"
                   value={formData.price}

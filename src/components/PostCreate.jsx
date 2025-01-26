@@ -3,6 +3,7 @@ import styled from "styled-components";
 import SvgIcon from "@mui/material/SvgIcon";
 import CollectionsIcon from "@mui/icons-material/Collections";
 import { useNavigate } from "react-router-dom";
+import createPost from "../apis/createPost";
 
 const categories = [
   { id: 1, name: "디지털기기" },
@@ -35,7 +36,7 @@ function PostCreate() {
     price: "",
     description: "",
   });
-  const [imageFile, setImageFile] = useState(null);
+  const [imageFile, setImageFile] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -53,35 +54,13 @@ function PostCreate() {
   console.log("file: ", imageFile);
 
   const handleSubmit = async () => {
-    // 이미지와 데이터를 분리하여 서버로 전송
-    // const payload = new FormData();
-    // payload.append("image", imageFile);
-    // payload.append(
-    //   "data",
-    //   JSON.stringify({
-    //     title: formData.title,
-    //     category: formData.category,
-    //     price: formData.price,
-    //     description: formData.description,
-    //   })
-    // );
-
-    // try {
-    //   const response = await fetch("https://example.com/api/posts", {
-    //     method: "POST",
-    //     body: payload,
-    //   });
-
-    //   if (response.ok) {
-    //     alert("게시물이 업로드되었습니다!");
-    //   } else {
-    //     alert("업로드에 실패했습니다.");
-    //   }
-    // } catch (error) {
-    //   console.error("Error uploading post:", error);
-    //   alert("서버에 문제가 발생했습니다.");
-    // }
-    navigate("/post/category");
+    try {
+      await createPost(formData, imageFile);
+      console.log("게시물 추가 성공");
+      navigate("/post/category");
+    } catch (error) {
+      console.log("게시물 추가 실패");
+    }
   };
 
   return (

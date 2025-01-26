@@ -69,24 +69,28 @@ function PostCreate() {
         홈 {">"} 중고거래 {">"} 게시물 작성
       </PostDetailTop>
       <Container>
-        <PostImg onClick={() => document.getElementById("imageInput").click()}>
-          {imageFile ? (
-            <img src={URL.createObjectURL(imageFile)} alt="Selected" />
-          ) : (
-            <SvgIcon
-              component={CollectionsIcon}
-              inheritViewBox
-              style={{ color: "#ff5d0547", fontSize: "200px" }}
+        <PostContainer>
+          <PostImg
+            onClick={() => document.getElementById("imageInput").click()}
+          >
+            {imageFile ? (
+              <img src={URL.createObjectURL(imageFile)} alt="Selected" />
+            ) : (
+              <SvgIcon
+                component={CollectionsIcon}
+                inheritViewBox
+                style={{ color: "#ff5d0547", fontSize: "200px" }}
+              />
+            )}
+            <input
+              id="imageInput"
+              type="file"
+              accept="image/*"
+              style={{ display: "none" }}
+              onChange={handleImageUpload}
             />
-          )}
-          <input
-            id="imageInput"
-            type="file"
-            accept="image/*"
-            style={{ display: "none" }}
-            onChange={handleImageUpload}
-          />
-        </PostImg>
+          </PostImg>
+        </PostContainer>
         <Detail>
           <Title>
             <Input
@@ -166,14 +170,25 @@ const Container = styled.div`
   display: flex;
 `;
 
-const PostImg = styled.div`
+const PostContainer = styled.div`
   width: 600px;
   height: 600px;
-  cursor: pointer;
   background-color: #fcf3f0;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  /* border: 2px solid red; */
+`;
+
+const PostImg = styled.div`
+  cursor: pointer;
+  /* width: 600px;
+  height: 600px; */
+  /* background-color: #fcf3f0; */
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
   position: relative;
   overflow: hidden;
 

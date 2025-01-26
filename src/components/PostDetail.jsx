@@ -130,20 +130,24 @@ function PostDetil() {
         홈 {">"} 중고거래 {">"} {post.title}
       </PostDetailTop>
       <Container>
-        <PostImg onClick={() => document.getElementById("imageInput").click()}>
-          {imagePreview ? (
-            <img src={imagePreview} alt="미리보기 이미지" />
-          ) : (
-            <img src={imageFile} alt={post.title} />
-          )}
-        </PostImg>
-        <input
-          type="file"
-          id="imageInput"
-          accept="image/*"
-          style={{ display: "none" }}
-          onChange={handleImageUpload}
-        />
+        <PostContainer>
+          <PostImg
+            onClick={() => document.getElementById("imageInput").click()}
+          >
+            {imagePreview ? (
+              <img src={imagePreview} alt="미리보기 이미지" />
+            ) : (
+              <img src={imageFile} alt={post.title} />
+            )}
+          </PostImg>
+          <input
+            type="file"
+            id="imageInput"
+            accept="image/*"
+            style={{ display: "none" }}
+            onChange={handleImageUpload}
+          />
+        </PostContainer>
         <Detail>
           <Title>
             {isEditing ? (
@@ -253,13 +257,32 @@ const Container = styled.div`
   display: flex;
 `;
 
-const PostImg = styled.div`
+const PostContainer = styled.div`
   width: 600px;
   height: 600px;
+  background-color: #fcf3f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  /* border: 2px solid red; */
+`;
+
+const PostImg = styled.div`
+  cursor: pointer;
+  /* width: 600px;
+  height: 600px; */
+  /* background-color: #fcf3f0; */
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  position: relative;
+  overflow: hidden;
 
   img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
   }
 `;
 

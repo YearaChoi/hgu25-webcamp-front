@@ -1,5 +1,5 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 function PostList() {
@@ -119,10 +119,25 @@ function PostList() {
     },
   ];
 
+  const { categoryId } = useParams();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (categoryId) {
+      const radioBtn = document.getElementById(`category-${categoryId}`);
+      if (radioBtn) {
+        radioBtn.checked = true;
+      }
+    }
+  }, [categoryId]);
+
   const handlePageReload = () => {
+    navigate("/post/category");
     window.location.reload();
+  };
+
+  const handleCategoryClick = (categoryId) => {
+    navigate(`/post/category/${categoryId}`);
   };
 
   const handlePostClick = (postId) => {
@@ -136,9 +151,17 @@ function PostList() {
   return (
     <Wrapper>
       <Top>
-        홈 중고거래
+        홈 {">"} 중고거래
         <TopInfo>
-          <MainText>경상북도 포항시 북구 중고거래</MainText>
+          <MainText>
+            경상북도 포항시 북구 중고거래{" "}
+            {categoryId &&
+              `- ${
+                categories.find(
+                  (category) => category.id === parseInt(categoryId)
+                )?.name
+              }`}
+          </MainText>
           <CreatPostBtn onClick={handleCreatePostBtnClick}>
             게시물 추가하기
           </CreatPostBtn>
@@ -169,6 +192,7 @@ function PostList() {
                   id={`category-${category.id}`}
                   name="option"
                   value={category.id}
+                  onClick={() => handleCategoryClick(category.id)}
                 />
                 <Lable htmlFor={`category-${category.id}`}>
                   {category.name}

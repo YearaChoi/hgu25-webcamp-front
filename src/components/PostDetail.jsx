@@ -39,6 +39,7 @@ function PostDetil() {
   });
 
   const [imageFile, setImageFile] = useState("");
+  const [imagePreview, setImagePreview] = useState("");
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
 
@@ -85,7 +86,11 @@ function PostDetil() {
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setImageFile(file); // 실제 파일 객체를 저장
+      setImageFile(file);
+
+      // 파일의 미리보기 URL 생성
+      const objectUrl = URL.createObjectURL(file);
+      setImagePreview(objectUrl);
     }
   };
 
@@ -124,7 +129,11 @@ function PostDetil() {
       </PostDetailTop>
       <Container>
         <PostImg onClick={() => document.getElementById("imageInput").click()}>
-          <img src={imageFile} alt={post.title} />
+          {imagePreview ? (
+            <img src={imagePreview} alt="미리보기 이미지" />
+          ) : (
+            <img src={imageFile} alt={post.title} />
+          )}
         </PostImg>
         <input
           type="file"

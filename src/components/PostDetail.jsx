@@ -28,17 +28,17 @@ const categories = [
 
 function PostDetil() {
   const [post, setPost] = useState("");
+  const [formData, setFormData] = useState({
+    title: "",
+    category: "",
+    price: "",
+    description: "",
+  });
+
+  const [imageFile, setImageFile] = useState("");
   const navigate = useNavigate();
   const { postId } = useParams();
-
   const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState({
-    title: post.title,
-    category: post.category,
-    price: post.price,
-    description: post.description,
-  });
-  const [imageFile, setImageFile] = useState(post.imageUrl);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -49,9 +49,17 @@ function PostDetil() {
     fetchPost();
   }, [postId]);
 
-  console.log(post);
-
-  if (!post) return <div>존재하지 않는 게시물입니다.</div>;
+  useEffect(() => {
+    if (post) {
+      setFormData({
+        title: post.title,
+        category: post.category,
+        price: post.price,
+        description: post.description,
+      });
+      setImageFile(post.imageName);
+    }
+  }, [post]);
 
   const handleEditBtnClick = () => {
     setIsEditing(true);
@@ -92,6 +100,8 @@ function PostDetil() {
       navigate("/post/category");
     }
   };
+
+  if (!post) return <div>존재하지 않는 게시물입니다.</div>;
 
   return (
     <Wrapper>

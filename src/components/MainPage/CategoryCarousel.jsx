@@ -6,25 +6,34 @@ import categoryImg3 from "../../assets/icons/categoryImg3.png";
 import categoryImg4 from "../../assets/icons/categoryImg4.png";
 import categoryImg5 from "../../assets/icons/categoryImg5.png";
 import categoryImg6 from "../../assets/icons/categoryImg6.png";
+import { useNavigate } from "react-router-dom";
+
+const popularCategory = [
+  { id: "1", name: "디지털기기", img: categoryImg1 },
+  { id: "2", name: "생활가전", img: categoryImg2 },
+  { id: "3", name: "가구/인테리어", img: categoryImg3 },
+  { id: "4", name: "생활/주방", img: categoryImg4 },
+  { id: "5", name: "유아동", img: categoryImg5 },
+  { id: "6", name: "유아도서", img: categoryImg6 },
+  { id: "7", name: "여성의류", img: categoryImg1 },
+];
 
 function CategoryCarousel() {
-  const popularCategory = [
-    { name: "디지털기기", img: categoryImg1 },
-    { name: "생활가전", img: categoryImg2 },
-    { name: "가구/인테리어", img: categoryImg3 },
-    { name: "생활/주방", img: categoryImg4 },
-    { name: "유아동", img: categoryImg5 },
-    { name: "유아도서", img: categoryImg6 },
-    { name: "여성의류", img: categoryImg1 },
-  ];
+  const navigate = useNavigate();
+  const handleCategoryClick = (categoryId) => {
+    navigate(`post/category/${categoryId}`);
+  };
 
   return (
     <Wrapper>
       <Container maxWidth="md">
         <Title>인기 카테고리</Title>
         <CategoryContainer>
-          {popularCategory.map((category, index) => (
-            <CategoryWrapper key={index}>
+          {popularCategory.map((category) => (
+            <CategoryWrapper
+              key={category.id}
+              onClick={() => handleCategoryClick(category.id)}
+            >
               <Category>
                 <img src={category.img} alt={category.name} />
               </Category>

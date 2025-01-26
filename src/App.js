@@ -14,7 +14,7 @@ function App() {
         <Route path="/" element={<MainPage />}></Route>
         <Route path="/post/create" element={<PostCreatePage />}></Route>
         <Route path="/post/:postId" element={<PostDetailPage />} />
-        <Route path="/post/category/:category?" element={<PostListPage />} />
+        <Route path="/post/category/:categoryId?" element={<PostListPage />} />
       </Routes>
     </BrowserRouter>
   );

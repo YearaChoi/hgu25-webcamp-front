@@ -134,18 +134,34 @@ function PostList() {
           </FileterMain>
         </PostFilter>
         <PostListContainer>
-          {posts.map((post) => (
-            <PostContainer
-              key={post.id}
-              onClick={() => handlePostClick(post.id)}
+          {posts.length > 0 ? (
+            posts.map((post) => (
+              <PostContainer
+                key={post.id}
+                onClick={() => handlePostClick(post.id)}
+              >
+                <PostImg>
+                  <img src={post.imageUrl} alt={post.title} />
+                </PostImg>
+                <PostTitle>{post.title}</PostTitle>
+                <PostPrice>{post.price}원</PostPrice>
+              </PostContainer>
+            ))
+          ) : (
+            <div
+              style={{
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                justifyContent: "center",
+                paddingTop: "300px",
+                border: "1px solid #f5f5f5",
+                borderRadius: "4px",
+              }}
             >
-              <PostImg>
-                <img src={post.imageUrl} alt={post.title} />
-              </PostImg>
-              <PostTitle>{post.title}</PostTitle>
-              <PostPrice>{post.price}원</PostPrice>
-            </PostContainer>
-          ))}
+              <NoPostsMessage>포스트가 없습니다.</NoPostsMessage>
+            </div>
+          )}
         </PostListContainer>
       </MainContainer>
     </Wrapper>
@@ -200,6 +216,7 @@ const MainContainer = styled.div`
 const PostFilter = styled.div`
   /* border: 2px solid orange; */
   width: 250px;
+  padding-bottom: 120px;
 `;
 
 const FilterTop = styled.div`
@@ -267,6 +284,12 @@ const PostContainer = styled.div`
     transform: scale(1);
     transition: transform 0.5s;
   }
+`;
+
+const NoPostsMessage = styled.div`
+  font-size: 20px;
+  color: #bdbdbd;
+  text-align: center;
 `;
 
 const PostTitle = styled.div`

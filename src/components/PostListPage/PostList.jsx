@@ -254,7 +254,7 @@ const PostContainer = styled.div`
   width: 230px;
   padding-bottom: 40px;
   cursor: pointer;
-  border: 2px solid green;
+  /* border: 2px solid green; */
   margin-right: 14px;
   margin-bottom: 10px;
 
